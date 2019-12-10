@@ -25,13 +25,14 @@ files:
     # very long time to install on another user's machine. You can use the
     # files.ignore array to exclude files from your build.
     ignore:
-        - datasets/*
         - secrets.txt
 # The build_steps array allows you to run shell commands at build time. Each
 # Each build step is executed in the order it appears in the array.
 build_steps:
     # We recommend pinning to a specific version of the Runway Model SDK until
     # the first major release, as breaking changes may be introduced to the SDK
+    - export PYTHONPATH=$PYTHONPATH:src
+    - export FACE_CLASSIFIER_PORT=8084
     - pip install runway-python==0.0.74
     - pip install -r REQUIREMENTS.txt
     # The if_gpu and if_cpu directives can be used to run build steps
